@@ -26,6 +26,7 @@ jobs:
         git clone https://github.com/navcoin/navcoin.github.io.git --branch main --single-branch main
         cp -r sources/_build/html/* docs/
         cd docs
+        echo docs.navcoin.org > CNAME
         touch .nojekyll
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
