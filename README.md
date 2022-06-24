@@ -8,7 +8,7 @@ Commits to the `main` branch are automatically built and deployed.
 
 Create your own fork and open a Pull Request with the suggested changes.
 
-Documentation is written using [Sphinx](https://www.sphinx-doc.org/en/master/).
+Documentation is built using [Sphinx](https://www.sphinx-doc.org/en/master/).
 
 [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) is the default plaintext markup language used by Sphinx.
 
