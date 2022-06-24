@@ -23,7 +23,7 @@ jobs:
     # ===============================
     - name: Commit documentation changes
       run: |
-        git clone https://github.com/navcoin/navcoin.github.io.git --branch gh-pages --single-branch gh-pages
+        git clone https://github.com/navcoin/navcoin.github.io.git --branch main --single-branch main
         cp -r sources/_build/html/* docs/
         cd docs
         touch .nojekyll
