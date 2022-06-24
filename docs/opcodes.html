@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Script Opcodes &mdash; NavCoin Core Documentation  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="canonical" href="http://docs.nav.community/opcodes.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Standard Scripts" href="standard_script.html" />
+    <link rel="prev" title="Serialization" href="serialization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NavCoin Core Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="get.html">How to get NavCoin Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use.html">How to use NavCoin Core</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="options.html">Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rpc.html">RPC methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network.html">Network parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base58check.html">Base58Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="payloads.html">Address Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Script Opcodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard_script.html">Standard Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard_script.html#dao-special-scripts">DAO Special Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="special_tx.html">Special Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blsct.html">BLSCT Cryptography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coldstaking.html">Cold Staking</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Release notes:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.0.0.html">NavCoin v4.0.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.2.0.html">NavCoin v4.2.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.2.1.html">NavCoin v4.2.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.3.0.html">NavCoin v4.3.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.4.0.html">NavCoin v4.4.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.5.0.html">NavCoin v4.5.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.5.0-additional-testing-notes/modified-coldstaking-client-notes-4.5.0.html">Modified client testing for cold-staking v4.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.5.1.html">NavCoin v4.5.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.5.2.html">NavCoin v4.5.2 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.6.0.html">NavCoin v4.6.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.7.0.html">NavCoin v4.7.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.7.1.html">NavCoin v4.7.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.7.2.html">NavCoin v4.7.2 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-4.7.3.html">NavCoin v4.7.3 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-5.0.0.html">NavCoin v5.0.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-5.0.1.html">NavCoin v5.0.1 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes/release-notes-6.0.html">NavCoin v6.0 Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NavCoin Core Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Script Opcodes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opcodes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="script-opcodes">
+<span id="opcodes"></span><h1>Script Opcodes<a class="headerlink" href="#script-opcodes" title="Permalink to this headline"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Besides the Opcodes included in the following table, NavCoin Core supports also every other Opcode present in Bitcoin Core 0.13.0</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 10%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OP_CFUND</p></td>
+<td><p>0xc1</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>OP_PROP</p></td>
+<td><p>0xc2</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>OP_PREQ</p></td>
+<td><p>0xc3</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>OP_YES</p></td>
+<td><p>0xc4</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>OP_NO</p></td>
+<td><p>0xc5</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>OP_ABSTAIN</p></td>
+<td><p>0xc7</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>OP_REMOVE</p></td>
+<td><p>0xc8</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>OP_DAO</p></td>
+<td><p>0xc9</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>OP_ANSWER</p></td>
+<td><p>0xca</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>OP_CONSULTATION</p></td>
+<td><p>0xcb</p></td>
+<td><p><a class="reference internal" href="standard_script.html#script-dao"><span class="std std-ref">DAO Special Scripts</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>OP_COINSTAKE</p></td>
+<td><p>0xc6</p></td>
+<td><p>Pushes <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> to the stack if the output spent in a coinstake transaction, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> otherwise.</p></td>
+</tr>
+<tr class="row-odd"><td><p>OP_POOL</p></td>
+<td><p>0xd0</p></td>
+<td><p>Used to signal a block has been staked by NavPool</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="serialization.html" class="btn btn-neutral float-left" title="Serialization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="standard_script.html" class="btn btn-neutral float-right" title="Standard Scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NavCoin Core Dev Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
