@@ -1,0 +1,19 @@
+name: Pull Request
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    # Standard drop-in approach that should work for most people.
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        pre-build-command: |
+           apt-get -qq install git
+           pip3 -q install sphinx-rtd-theme recommonmark
+        docs-folder: "sources/"
+
