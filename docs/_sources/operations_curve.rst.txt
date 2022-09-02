@@ -1,4 +1,4 @@
-:: _operations_curve:
+.. _operations_curve:
 
 Operations on the BLS12-381 curve
 =================================
