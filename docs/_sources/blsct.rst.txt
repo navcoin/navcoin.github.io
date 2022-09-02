@@ -95,3 +95,10 @@ A validator can determine if a transaction is correct:
    - By verifying that ``BPS`` is a valid signature by defining ``pkBal`` as, for each transaction's input ``prevOut``, the sum of :math:`prevOut.bp.v` if it is private or :math:`prevOut.amount*HG1(g||"bulletproof"||0)` if it is public, minus the sum of, for each transaction's output ``out``, :math:`out.bp.v` if it is private or :math:`out.amount*HG1(g||"bulletproof"||0)` if it is public, and using ``pkBal`` as the signer's public key and ``BLSCTBALANCE`` as the message of the basic scheme,
    - by verifying that ``BS`` is a valid signature using the augmented scheme with ``P, H(tx_in)`` for each transaction's input as inputs to the verify signature function, and ``E, H(tx_out)`` from each transaction's output,
    - and by verifying that for each output, its range proof ``bp`` is validated correctly.
+   
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: BLSCT Cryptography
+
+   operations_curve.rst
