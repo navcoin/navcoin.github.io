@@ -5,7 +5,7 @@ BLSCT
    
 .. toctree::
    :maxdepth: 2
-   :caption: BLSCT Cryptography
+   :caption: BLSCT
 
    blsct_protocol.rst
    operations_curve.rst
