@@ -28,7 +28,6 @@ Field            Type                  Length                  Present
 ================ ===================== ======================  ====================
 blockHeader      :ref:`header_s`       70 bytes                Always
 vTx              :ref:`tx_s` vector    Variable                Always
-vchBlockSig      unsigned char vector  Variable                Always
 ================ ===================== ======================  ====================
 
 .. _bp_s:
