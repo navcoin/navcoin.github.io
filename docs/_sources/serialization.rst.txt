@@ -66,17 +66,15 @@ Transaction
 Field            Type                   Length                  Present
 ================ ====================== ======================  ======================
 nVersion         signed int             4 bytes                 Always
-nTime            unsigned int           4 bytes                 Always
 vin              :ref:`tx_in_s` vector  Variable                Always
 flags            unsigned char          1 byte                  If vin.size() == 0
 vin              :ref:`tx_in_s` vector  Variable                If vin.size() == 0
 vout             :ref:`tx_out_s` vector Variable                If vin.size() == 0
 vout             :ref:`tx_out_s` vector Variable                If vin.size() > 0
 wit              :ref:`tx_wit_s` vector Variable                If flags&1
-nLockTime        unsinged int           4 bytes                 Always
-strDZeel         string                 Variable                If nVersion >= 2
-vchBalanceSig    unsigned char vector   96 bytes                If nVersion & 0x30
-vchTxSig         unsigned char vector   96 bytes                If nVersion & 0x10
+nLockTime        unsigned int           4 bytes                 Always
+vchBalanceSig    unsigned char vector   96 bytes                If nVersion & 0x20
+vchTxSig         unsigned char vector   96 bytes                If nVersion & 0x20
 ================ ====================== ======================  ======================
 
 .. _tx_in_s:
@@ -101,12 +99,13 @@ Transaction Output
 Field            Type                   Length                  Present
 ================ ====================== ======================  =========================
 nValue           unsigned int           8 bytes                 Always
-nValue           unsinged int           8 bytes                 If nValue == ~(uint64_t)0
-ephemeralKey     unsigned char vector   48 bytes                If nValue == ~(uint64_t)0
-outputKey        unsigned char vector   48 bytes                If nValue == ~(uint64_t)0
-spendingKey      unsigned char vector   48 bytes                If nValue == ~(uint64_t)0
-bp               :ref:`bp_s`                                    If nValue == ~(uint64_t)0
+nFlags           unsigned int           8 bytes                 If nValue != ~(uint64_t)0
 scriptPubKey     unsigned char vector   Variable                Always
+spendingKey      unsigned char vector   48 bytes                If nFlags & 0x01
+blindingKey      unsigned char vector   48 bytes                If nFlags & 0x01
+ephemeralKey     unsigned char vector   48 bytes                If nFlags & 0x01
+rangeProof       :ref:`bp_s`                                    If nFlags & 0x01
+tokenId          :ref:`token_id_s`                              If nFlags & 0x02
 ================ ====================== ======================  =========================
 
 .. _sca_s:
@@ -129,6 +128,19 @@ G1Element
 Field            Type                   Length                  Present
 ================ ====================== ======================  ======================
 data             unsigned char vector   48                      Always
+================ ====================== ======================  ======================
+
+
+.. _token_id_s:
+
+TokenId
+---------
+
+================ ====================== ======================  ======================
+Field            Type                   Length                  Present
+================ ====================== ======================  ======================
+tokenId          uint256                32                      Always
+nftId            unsigned int           8                       Always
 ================ ====================== ======================  ======================
 
 
