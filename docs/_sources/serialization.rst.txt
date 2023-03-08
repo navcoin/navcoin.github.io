@@ -38,12 +38,9 @@ Bulletproof Range Proof
 ================ ===================== ======================  ======================
 Field            Type                  Length                  Present
 ================ ===================== ======================  ======================
-V_size           Compact size          Variable                Always
-V                :ref:`g1_s` vector      V_size                  If V_size > 0
-L_size           Compact size          Variable                Always
-L                :ref:`g1_s` vector      L_size                  If L_size > 0
-R_size           Compact size          Variable                Always
-R                :ref:`g1_s` vector      R_size                  If R_size > 0
+V                :ref:`g1_s` vector      Variable              Always
+L                :ref:`g1_s` vector      Variable              Always
+R                :ref:`g1_s` vector      Variable              Always
 A                :ref:`g1_s`             48 bytes                Always
 S                :ref:`g1_s`             48 bytes                Always
 T1               :ref:`g1_s`             48 bytes                Always
