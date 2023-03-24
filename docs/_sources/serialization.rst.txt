@@ -96,11 +96,11 @@ Field            Type                   Length                  Present
 nValue           unsigned int           8 bytes                 Always
 nFlags           unsigned int           8 bytes                 If nValue != ~(uint64_t)0
 scriptPubKey     unsigned char vector   Variable                Always
+rangeProof       :ref:`bp_s`                                    If nFlags & 0x01
 spendingKey      unsigned char vector   48 bytes                If nFlags & 0x01
 blindingKey      unsigned char vector   48 bytes                If nFlags & 0x01
 ephemeralKey     unsigned char vector   48 bytes                If nFlags & 0x01
 viewTag          unsigned int           2 bytes                 If nFlags & 0x01
-rangeProof       :ref:`bp_s`                                    If nFlags & 0x01
 tokenId          :ref:`token_id_s`                              If nFlags & 0x02
 ================ ====================== ======================  =========================
 
