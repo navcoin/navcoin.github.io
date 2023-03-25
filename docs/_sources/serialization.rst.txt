@@ -38,18 +38,18 @@ Bulletproof Range Proof
 ================ ===================== ======================  ======================
 Field            Type                  Length                  Present
 ================ ===================== ======================  ======================
-V                :ref:`g1_s` vector      Variable              Always
-L                :ref:`g1_s` vector      Variable              Always
-R                :ref:`g1_s` vector      Variable              Always
-A                :ref:`g1_s`             48 bytes                Always
-S                :ref:`g1_s`             48 bytes                Always
-T1               :ref:`g1_s`             48 bytes                Always
-T2               :ref:`g1_s`             48 bytes                Always
-taux             :ref:`sca_s`                32 bytes                Always
-mu               :ref:`sca_s`                32 bytes                Always
-a                :ref:`sca_s`                32 bytes                Always
-b                :ref:`sca_s`                32 bytes                Always
-t                :ref:`sca_s`                32 bytes                Always
+V                :ref:`g1_s` vector    Variable                Always
+L                :ref:`g1_s` vector    Variable                Always
+R                :ref:`g1_s` vector    Variable                Always
+A                :ref:`g1_s`                                   Always
+S                :ref:`g1_s`                                   Always
+T1               :ref:`g1_s`                                   Always
+T2               :ref:`g1_s`                                   Always
+taux             :ref:`sca_s`                                  Always
+mu               :ref:`sca_s`                                  Always
+a                :ref:`sca_s`                                  Always
+b                :ref:`sca_s`                                  Always
+t                :ref:`sca_s`                                  Always
 ================ ===================== ======================  ======================
 
 
@@ -68,8 +68,7 @@ vin              :ref:`tx_in_s` vector  Variable                If vin.size() ==
 vout             :ref:`tx_out_s` vector Variable                Always
 wit              :ref:`tx_wit_s` vector Variable                If flags&1
 nLockTime        unsigned int           4 bytes                 Always
-vchBalanceSig    unsigned char vector   96 bytes                If nVersion & 0x20
-vchTxSig         unsigned char vector   96 bytes                If nVersion & 0x20
+vchTxSig         :ref:`g2_s`                                    If nVersion & 0x20
 ================ ====================== ======================  ======================
 
 .. _tx_in_s:
@@ -97,9 +96,9 @@ nValue           unsigned int           8 bytes                 Always
 nFlags           unsigned int           8 bytes                 If nValue != ~(uint64_t)0
 scriptPubKey     unsigned char vector   Variable                Always
 rangeProof       :ref:`bp_s`                                    If nFlags & 0x01
-spendingKey      unsigned char vector   48 bytes                If nFlags & 0x01
-blindingKey      unsigned char vector   48 bytes                If nFlags & 0x01
-ephemeralKey     unsigned char vector   48 bytes                If nFlags & 0x01
+spendingKey      :ref:`g1_s`            48 bytes                If nFlags & 0x01
+blindingKey      :ref:`g1_s`            48 bytes                If nFlags & 0x01
+ephemeralKey     :ref:`g1_s`            48 bytes                If nFlags & 0x01
 viewTag          unsigned int           2 bytes                 If nFlags & 0x01
 tokenId          :ref:`token_id_s`                              If nFlags & 0x02
 ================ ====================== ======================  =========================
@@ -112,7 +111,7 @@ Scalar
 ================ ====================== ======================  ======================
 Field            Type                   Length                  Present
 ================ ====================== ======================  ======================
-data             unsigned char vector   32                      Always
+data             Scalar                 32                      Always
 ================ ====================== ======================  ======================
 
 .. _g1_s:
@@ -123,7 +122,18 @@ G1Element
 ================ ====================== ======================  ======================
 Field            Type                   Length                  Present
 ================ ====================== ======================  ======================
-data             unsigned char vector   48                      Always
+data             G1Element              48                      Always
+================ ====================== ======================  ======================
+
+.. _g2_s:
+
+G2Element
+---------
+
+================ ====================== ======================  ======================
+Field            Type                   Length                  Present
+================ ====================== ======================  ======================
+data             G2Element              96                      Always
 ================ ====================== ======================  ======================
 
 
