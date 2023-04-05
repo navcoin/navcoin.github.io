@@ -66,7 +66,7 @@ vin              :ref:`tx_in_s` vector  Variable                Always
 flags            unsigned char          1 byte                  If vin.size() == 0
 vin              :ref:`tx_in_s` vector  Variable                If vin.size() == 0
 vout             :ref:`tx_out_s` vector Variable                Always
-wit              :ref:`tx_wit_s` vector Variable                If flags&1
+wit              :ref:`tx_wit_s` vector Same as vin             If flags&1
 nLockTime        unsigned int           4 bytes                 Always
 vchTxSig         :ref:`g2_s`                                    If nVersion & 0x20
 ================ ====================== ======================  ======================
