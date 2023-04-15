@@ -92,8 +92,8 @@ Transaction Output
 ================ ====================== ======================  =========================
 Field            Type                   Length                  Present
 ================ ====================== ======================  =========================
-nValue           unsigned int           8 bytes                 Always
-nFlags           unsigned int           8 bytes                 If nValue == ~(uint64_t)0
+nValue           signed int             8 bytes                 Always
+nFlags           unsigned int           8 bytes                 If nValue == INT64_MAX
 scriptPubKey     unsigned char vector   Variable                Always
 rangeProof       :ref:`bp_s`                                    If nFlags & 0x01
 spendingKey      :ref:`g1_s`            48 bytes                If nFlags & 0x01
